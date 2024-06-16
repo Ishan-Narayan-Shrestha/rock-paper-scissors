@@ -5,19 +5,16 @@ console.log("Hello World!")
 // create a function name called getComputerChoice
 function getComputerChoice() {
 
-// create a variable which store rock, paper, scissors.
-let choices = ["rock", "paper", "scissors"];
+    // create a variable which store rock, paper, scissors.
+    let choices = ["rock", "paper", "scissors"];
 
-// create a variable which will randomly select and STORE the data from previous variable.
-let randomChoice = Math.floor(Math.random() * choices.length);
+    // create a variable which will randomly select and STORE the data from previous variable.
+    let randomChoice = Math.floor(Math.random() * choices.length);
 
-// DISPLAY the output of randomly chosen data
-console.log(choices[randomChoice])
-}
-
-// call the function 
-getComputerChoice()
-
+    // DISPLAY the output of randomly chosen data
+    // console.log(choices[randomChoice])
+    return choices[randomChoice];
+    }
 
 
 // Logic to get human choice
@@ -31,13 +28,54 @@ function getHumanChoice() {
     // IF the answer == "rock" || "paper" || "scissors" THEN
     if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors" ) {
     // DISPLAY answer
-    console.log(`${userChoice}`)
+    return userChoice
     }
     // ELSE
     else {
     // DISPLAY "ERROR"
-    console.log("ERROR")
+    return null;
         }
     }
-    // CALL function
-    getHumanChoice()
+
+
+// Creating two variables to keep track of humanScore and computerScore
+
+let humanScore = 0;
+
+let computerScore = 0;
+
+// Write a logic to play single round
+
+// CREATE a function to playRounds with two parameters humanChoice and computerChoice
+function playRound(humanChoice, computerChoice) {
+
+    // CHECKING if they are equal
+    if (humanChoice === computerChoice) {
+        console.log(`It's a TIE! You both selected ${humanChoice}`)
+    // Comparing if human choice beats computer choice
+    } else if (
+        (humanChoice === "rock" && computerChoice == "scissors") || 
+        (humanChoice === "paper" && computerChoice === "rock") || 
+        (humanChoice === "scissors" && computerChoice === "paper")) {
+            console.log(`${humanChoice} beats ${computerChoice}`);
+            humanScore++;
+            console.log(`human score: ${humanScore} AND computer score: ${computerScore}`);
+    // Comparing if computer choice beats human choice
+    } else if (
+        (computerChoice === "rock" && humanChoice == "scissors") || 
+        (computerChoice === "paper" && humanChoice === "rock") || 
+        (computerChoice === "scissors" && humanChoice === "paper")){
+            console.log(`${computerChoice} beats ${humanChoice}`);
+            computerScore++;
+            console.log(`human score: ${humanScore} AND computer score: ${computerScore}`);
+    // IF non of the conditions satisifies it will throw an ERROR message
+    } else {
+            console.log("ERROR!")
+    }
+
+}
+
+const computerSelection = getComputerChoice();
+const humanSelection = getHumanChoice();
+
+playRound(humanSelection, computerSelection);
