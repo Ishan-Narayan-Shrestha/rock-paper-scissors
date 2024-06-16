@@ -1,5 +1,4 @@
 console.log("Hello World!")
-
 // Logic to get computer choice
 
 // create a function name called getComputerChoice
@@ -16,8 +15,8 @@ function getComputerChoice() {
     return choices[randomChoice];
     }
 
-
-// Logic to get human choice
+function playGame() {
+    // Logic to get human choice
 
 // CREATE a function named getHumanChoice
 function getHumanChoice() {
@@ -37,7 +36,6 @@ function getHumanChoice() {
         }
     }
 
-
 // Creating two variables to keep track of humanScore and computerScore
 
 let humanScore = 0;
@@ -52,6 +50,7 @@ function playRound(humanChoice, computerChoice) {
     // CHECKING if they are equal
     if (humanChoice === computerChoice) {
         console.log(`It's a TIE! You both selected ${humanChoice}`)
+        console.log(`human score: ${humanScore} AND computer score: ${computerScore}`);
     // Comparing if human choice beats computer choice
     } else if (
         (humanChoice === "rock" && computerChoice == "scissors") || 
@@ -74,8 +73,28 @@ function playRound(humanChoice, computerChoice) {
     }
 
 }
+// INITILIZATION i = 0
+// for(i < 5) THEN
+// OUTPUT computerSelection, humanSelection and result variable starts untill the loop runs for 5 times
+for (i = 0; i < 5; i++) {
+    const computerSelection = getComputerChoice();
+    const humanSelection = getHumanChoice();
+    result = playRound(computerSelection, humanSelection);
+}
 
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
+// IF humanScore equals computerScore at the end of 5 rounds THEN
+//  OUTPUT It's a tie
+if (humanScore === computerScore) {
+    console.log("It's a tie Game");
+// ELSE IF humanScore is greater then computerScore THEN
+// OUTPUT user won the game
+} else if (humanScore > computerScore) {
+     console.log("User won the game");
+// ELSE IF computerScore is greater then humanScore THEN
+// OUTPUT computer won the game
+} else {
+    console.log("computer won the game");
+}
+}
 
-playRound(humanSelection, computerSelection);
+playGame()
